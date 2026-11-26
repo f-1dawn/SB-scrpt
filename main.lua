@@ -8004,6 +8004,8 @@ end) end end end)]])
 			return
 		end
 
+		;(function()
+		local ksUI = {}
 		local CoreGui = game:GetService("CoreGui")
 		pcall(function()
 			if type(gethui) == "function" then
@@ -8187,26 +8189,30 @@ end) end end end)]])
 		toggleGuiBtn1.AutoButtonColor = false
 		toggleGuiBtn1.Text = ""
 		toggleGuiBtn1.Parent = xursedHubGui1
-		local uiCorner11 = Instance.new("UICorner")
-		uiCorner11.CornerRadius = UDim.new(1, 0)
-		uiCorner11.Parent = toggleGuiBtn1
-		local toggleStroke1 = Instance.new("UIStroke")
-		toggleStroke1.Name = "ToggleStroke"
-		toggleStroke1.Color = XursedThemes.Xursed.Accent
-		toggleStroke1.Thickness = 1.4
-		toggleStroke1.Transparency = 0.2
-		toggleStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		toggleStroke1.Parent = toggleGuiBtn1
-		local toggleDot1 = Instance.new("Frame")
-		toggleDot1.Name = "ToggleDot"
-		toggleDot1.Size = UDim2.new(0, 8, 0, 8)
-		toggleDot1.Position = UDim2.new(0, 12, 0.5, -4)
-		toggleDot1.BackgroundColor3 = XursedThemes.Xursed.Accent
-		toggleDot1.BorderSizePixel = 0
-		toggleDot1.Parent = toggleGuiBtn1
-		local toggleDotCorner1 = Instance.new("UICorner")
-		toggleDotCorner1.CornerRadius = UDim.new(1, 0)
-		toggleDotCorner1.Parent = toggleDot1
+		do
+			local uiCorner11 = Instance.new("UICorner")
+			uiCorner11.CornerRadius = UDim.new(1, 0)
+			uiCorner11.Parent = toggleGuiBtn1
+			local toggleStroke1 = Instance.new("UIStroke")
+			toggleStroke1.Name = "ToggleStroke"
+			toggleStroke1.Color = XursedThemes.Xursed.Accent
+			toggleStroke1.Thickness = 1.4
+			toggleStroke1.Transparency = 0.2
+			toggleStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			toggleStroke1.Parent = toggleGuiBtn1
+			ksUI.toggleStroke = toggleStroke1
+			local toggleDot1 = Instance.new("Frame")
+			toggleDot1.Name = "ToggleDot"
+			toggleDot1.Size = UDim2.new(0, 8, 0, 8)
+			toggleDot1.Position = UDim2.new(0, 12, 0.5, -4)
+			toggleDot1.BackgroundColor3 = XursedThemes.Xursed.Accent
+			toggleDot1.BorderSizePixel = 0
+			toggleDot1.Parent = toggleGuiBtn1
+			ksUI.toggleDot = toggleDot1
+			local toggleDotCorner1 = Instance.new("UICorner")
+			toggleDotCorner1.CornerRadius = UDim.new(1, 0)
+			toggleDotCorner1.Parent = toggleDot1
+		end
 		local textLabel7 = Instance.new("TextLabel")
 		textLabel7.Size = UDim2.new(1, -24, 1, 0)
 		textLabel7.Position = UDim2.new(0, 22, 0, 0)
@@ -8217,7 +8223,7 @@ end) end end end)]])
 		textLabel7.Text = "Hide Xursed"
 		textLabel7.Parent = toggleGuiBtn1
 		local flag12 = false
-		local toggleDragged1 = false
+		ksUI.toggleDragged = false
 		local v87
 		local vector32 = Vector3.new()
 		local uDim23 = UDim2.new()
@@ -8227,7 +8233,7 @@ end) end end end)]])
 					or input.UserInputType == Enum.UserInputType.Touch
 			then
 				flag12 = true
-				toggleDragged1 = false
+				ksUI.toggleDragged = false
 				v87 = input
 				vector32 = input.Position
 				uDim23 = toggleGuiBtn1.Position
@@ -8252,7 +8258,7 @@ end) end end end)]])
 				if v1 or v2 then
 					local v3 = input.Position - vector32
 					if v3.Magnitude > 6 then
-						toggleDragged1 = true
+						ksUI.toggleDragged = true
 					end
 					toggleGuiBtn1.Position = UDim2.new(
 						uDim23.X.Scale,
@@ -8283,27 +8289,29 @@ end) end end end)]])
 		container1.ClipsDescendants = true
 		container1.BackgroundTransparency = 1
 		container1.Parent = xursedHubGui1
-		local imageLabel2 = Instance.new("ImageLabel")
-		imageLabel2.Name = "CustomBgImage"
-		imageLabel2.Size = UDim2.new(1, 0, 1, 0)
-		imageLabel2.BackgroundTransparency = 1
-		imageLabel2.Image = ""
-		imageLabel2.ImageTransparency = 1
-		imageLabel2.ScaleType = Enum.ScaleType.Crop
-		imageLabel2.Visible = false
-		imageLabel2.ZIndex = 1
-		imageLabel2.ClipsDescendants = true
-		imageLabel2.Parent = container1
-		local bgCorner1 = Instance.new("UICorner")
-		bgCorner1.CornerRadius = UDim.new(0, 14)
-		bgCorner1.Parent = imageLabel2
-		decorativeOverlay1.Size = UDim2.new(1, 0, 1, 0)
-		decorativeOverlay1.Position = UDim2.new(0, 0, 0, 0)
-		decorativeOverlay1.ZIndex = 2
-		decorativeOverlay1.Parent = container1
-		local dimCorner1 = Instance.new("UICorner")
-		dimCorner1.CornerRadius = UDim.new(0, 14)
-		dimCorner1.Parent = decorativeOverlay1
+		do
+			local imageLabel2 = Instance.new("ImageLabel")
+			imageLabel2.Name = "CustomBgImage"
+			imageLabel2.Size = UDim2.new(1, 0, 1, 0)
+			imageLabel2.BackgroundTransparency = 1
+			imageLabel2.Image = ""
+			imageLabel2.ImageTransparency = 1
+			imageLabel2.ScaleType = Enum.ScaleType.Crop
+			imageLabel2.Visible = false
+			imageLabel2.ZIndex = 1
+			imageLabel2.ClipsDescendants = true
+			imageLabel2.Parent = container1
+			local bgCorner1 = Instance.new("UICorner")
+			bgCorner1.CornerRadius = UDim.new(0, 14)
+			bgCorner1.Parent = imageLabel2
+			decorativeOverlay1.Size = UDim2.new(1, 0, 1, 0)
+			decorativeOverlay1.Position = UDim2.new(0, 0, 0, 0)
+			decorativeOverlay1.ZIndex = 2
+			decorativeOverlay1.Parent = container1
+			local dimCorner1 = Instance.new("UICorner")
+			dimCorner1.CornerRadius = UDim.new(0, 14)
+			dimCorner1.Parent = decorativeOverlay1
+		end
 
 		local tbl23 = {
 			Xursed = XursedThemes.Xursed.Base,
@@ -8317,8 +8325,6 @@ end) end end end)]])
 		}
 
 		local color2 = XursedThemes.Xursed.Accent
-		local bgPanelController1
-		local onThemeChanged1
 
 		local function ApplyTheme1(arg1)
 			local v1 = XursedThemes[arg1] and arg1 or "Xursed"
@@ -8329,20 +8335,20 @@ end) end end end)]])
 			tbl20.Theme = v1
 			pcall(v34, "XursedHub_Settings.json", HttpService:JSONEncode(tbl20))
 
-			if onThemeChanged1 then
-				pcall(onThemeChanged1, color2)
+			if ksUI.onThemeChanged then
+				pcall(ksUI.onThemeChanged, color2)
 			end
-			if toggleStroke1 then
-				toggleStroke1.Color = color2
+			if ksUI.toggleStroke then
+				ksUI.toggleStroke.Color = color2
 			end
-			if toggleDot1 then
-				toggleDot1.BackgroundColor3 = color2
+			if ksUI.toggleDot then
+				ksUI.toggleDot.BackgroundColor3 = color2
 			end
 			if toggleGuiBtn1 then
 				toggleGuiBtn1.BackgroundColor3 = v2
 			end
-			if bgPanelController1 and bgPanelController1.RefreshAccent then
-				pcall(bgPanelController1.RefreshAccent, color2)
+			if ksUI.bgPanelController and ksUI.bgPanelController.RefreshAccent then
+				pcall(ksUI.bgPanelController.RefreshAccent, color2)
 			end
 
 			if container1 then
@@ -8444,16 +8450,18 @@ end) end end end)]])
 		end
 
 		ApplyTheme1(tbl20.Theme)
-		local uiCorner12 = Instance.new("UICorner")
-		uiCorner12.CornerRadius = UDim.new(0, 14)
-		uiCorner12.Parent = container1
-		local windowStroke1 = Instance.new("UIStroke")
-		windowStroke1.Name = "WindowStroke"
-		windowStroke1.Color = color2
-		windowStroke1.Thickness = 1.5
-		windowStroke1.Transparency = 0.32
-		windowStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		windowStroke1.Parent = container1
+		do
+			local uiCorner12 = Instance.new("UICorner")
+			uiCorner12.CornerRadius = UDim.new(0, 14)
+			uiCorner12.Parent = container1
+			local windowStroke1 = Instance.new("UIStroke")
+			windowStroke1.Name = "WindowStroke"
+			windowStroke1.Color = color2
+			windowStroke1.Thickness = 1.5
+			windowStroke1.Transparency = 0.32
+			windowStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			windowStroke1.Parent = container1
+		end
 
 		task.spawn(function()
 			task.wait(0.1)
@@ -8472,8 +8480,8 @@ end) end end end)]])
 		local flag13 = true
 		func3 = UDim2.new(0.5, -280, 0.5, -180)
 		toggleGuiBtn1.MouseButton1Click:Connect(function()
-			if toggleDragged1 then
-				toggleDragged1 = false
+			if ksUI.toggleDragged then
+				ksUI.toggleDragged = false
 				return
 			end
 			flag13 = not flag13
@@ -8499,37 +8507,39 @@ end) end end end)]])
 					:Play()
 			end
 		end)
-		local headerDot1 = Instance.new("Frame")
-		headerDot1.Name = "HeaderDot"
-		headerDot1.Size = UDim2.new(0, 9, 0, 9)
-		headerDot1.Position = UDim2.new(0, 14, 0, 14)
-		headerDot1.BackgroundColor3 = color2
-		headerDot1.BorderSizePixel = 0
-		headerDot1.ZIndex = 5
-		headerDot1.Parent = container1
-		local headerDotCorner1 = Instance.new("UICorner")
-		headerDotCorner1.CornerRadius = UDim.new(1, 0)
-		headerDotCorner1.Parent = headerDot1
-		local v38 = Instance.new("TextLabel")
-		v38.Size = UDim2.new(1, -100, 0, 26)
-		v38.Position = UDim2.new(0, 30, 0, 6)
-		v38.BackgroundTransparency = 1
-		v38.FontFace = fontBold
-		v38.TextSize = 15
-		v38.TextColor3 = Color3.fromRGB(245, 247, 252)
-		v38.Text = "Xursed Hub | Killstreak Only"
-		v38.TextXAlignment = Enum.TextXAlignment.Left
-		v38.ZIndex = 5
-		v38.Parent = container1
-		local headerDivider1 = Instance.new("Frame")
-		headerDivider1.Name = "HeaderDivider"
-		headerDivider1.Size = UDim2.new(1, -24, 0, 1)
-		headerDivider1.Position = UDim2.new(0, 12, 0, 37)
-		headerDivider1.BackgroundColor3 = color2
-		headerDivider1.BackgroundTransparency = 0.72
-		headerDivider1.BorderSizePixel = 0
-		headerDivider1.ZIndex = 5
-		headerDivider1.Parent = container1
+		do
+			local headerDot1 = Instance.new("Frame")
+			headerDot1.Name = "HeaderDot"
+			headerDot1.Size = UDim2.new(0, 9, 0, 9)
+			headerDot1.Position = UDim2.new(0, 14, 0, 14)
+			headerDot1.BackgroundColor3 = color2
+			headerDot1.BorderSizePixel = 0
+			headerDot1.ZIndex = 5
+			headerDot1.Parent = container1
+			local headerDotCorner1 = Instance.new("UICorner")
+			headerDotCorner1.CornerRadius = UDim.new(1, 0)
+			headerDotCorner1.Parent = headerDot1
+			local v38 = Instance.new("TextLabel")
+			v38.Size = UDim2.new(1, -100, 0, 26)
+			v38.Position = UDim2.new(0, 30, 0, 6)
+			v38.BackgroundTransparency = 1
+			v38.FontFace = fontBold
+			v38.TextSize = 15
+			v38.TextColor3 = Color3.fromRGB(245, 247, 252)
+			v38.Text = "Xursed Hub | Killstreak Only"
+			v38.TextXAlignment = Enum.TextXAlignment.Left
+			v38.ZIndex = 5
+			v38.Parent = container1
+			local headerDivider1 = Instance.new("Frame")
+			headerDivider1.Name = "HeaderDivider"
+			headerDivider1.Size = UDim2.new(1, -24, 0, 1)
+			headerDivider1.Position = UDim2.new(0, 12, 0, 37)
+			headerDivider1.BackgroundColor3 = color2
+			headerDivider1.BackgroundTransparency = 0.72
+			headerDivider1.BorderSizePixel = 0
+			headerDivider1.ZIndex = 5
+			headerDivider1.Parent = container1
+		end
 		tbl1[15] = Instance.new("ScrollingFrame")
 		tbl1[15].Name = "TabContainer"
 		tbl1[15].Size = UDim2.new(1, -24, 0, 30)
@@ -8719,7 +8729,7 @@ end) end end end)]])
 			Accent = color2,
 			Dim = Color3.fromRGB(115, 118, 136)
 		}
-		onThemeChanged1 = function(acc)
+		ksUI.onThemeChanged = function(acc)
 			tbl25.Accent = acc
 		end
 
@@ -12238,7 +12248,7 @@ end) end end end)]])
 			end,
 			false
 		)
-		bgPanelController1 = XursedBG.BuildSettingsPanel({
+		ksUI.bgPanelController = XursedBG.BuildSettingsPanel({
 			Parent = v43,
 			Config = tbl20,
 			BgImage = container1:FindFirstChild("CustomBgImage"),
@@ -12251,7 +12261,6 @@ end) end end end)]])
 				return color2
 			end
 		})
-		local fpsConn1
 		local destroyHubX1 = Instance.new("TextButton")
 		destroyHubX1.Name = "DestroyHubX"
 		destroyHubX1.Size = UDim2.new(0, 26, 0, 24)
@@ -12272,8 +12281,8 @@ end) end end end)]])
 			pcall(function()
 				RunService:UnbindFromRenderStep("XursedHubMouse")
 			end)
-			if fpsConn1 then
-				fpsConn1:Disconnect()
+			if ksUI.fpsConn then
+				ksUI.fpsConn:Disconnect()
 			end
 
 			if xursedHubGui1 then
@@ -12489,7 +12498,7 @@ end) end end end)]])
 		local v64 = func32(v43, "Ping Counter", "Ping: 0 ms")
 		local num18 = 0
 		local num19 = 0
-		fpsConn1 = RunService.RenderStepped:Connect(function()
+		ksUI.fpsConn = RunService.RenderStepped:Connect(function()
 			num19 = num19 + 1
 		end)
 		task.spawn(function()
@@ -12519,6 +12528,7 @@ end) end end end)]])
 		func32(v45, "Hub", "Xursed Hub — Killstreak Only Edition")
 		func32(v45, "UI & Custom Backgrounds", "Xursed Obsidian Glass Engine (Catbox / URL / Asset ID)")
 		v39.Start()
+		end)()
 	end,
 	function(arg1)
 		local str = tostring(arg1)
